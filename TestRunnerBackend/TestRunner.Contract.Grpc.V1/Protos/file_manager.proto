@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option csharp_namespace = "TestRunner.Contract.Grpc.V1";
+
+package file_manager;
+
+service FileManager {
+
+  rpc OpenFileSystem (OpenFileSystemRequest) returns (FileSystemTreeResponse);
+  rpc ChangeDirectory (ChangeDirectoryRequest) returns (FileSystemTreeResponse);
+  rpc ChooseTargetDirectory(ChooseTargetDirectoryRequest) returns (ChooseTargetDirectoryResponse);
+}
+
+message OpenFileSystemRequest {
+}
+
+message ChangeDirectoryRequest {
+}
+
+message ChooseTargetDirectoryRequest {
+}
+
+message ChooseTargetDirectoryResponse {
+}
+
+message FileSystemTreeResponse {
+}
