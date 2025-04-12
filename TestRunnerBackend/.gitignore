@@ -1,0 +1,110 @@
+##############
+# .NET stuff #
+##############
+
+# Build results
+bin/
+obj/
+out/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# NuGet packages (if not using PackageReference)
+*.nupkg
+*.snupkg
+packages/
+project.lock.json
+project.fragment.lock.json
+
+# Dotnet CLI
+.vscode/
+.vs/
+*.ide/
+*.dbmdl
+*.log
+*.tlog
+*.svclog
+
+# ASP.NET
+wwwroot/**/*.cache
+wwwroot/**/*.min.*
+wwwroot/**/*.map
+
+# EF Core Migrations
+Migrations/*Designer.cs
+Migrations/*Snapshot.cs
+
+##############
+# gRPC stuff #
+##############
+
+# Protobuf-generated code
+**/*.pb.cc
+**/*.pb.h
+**/*.pb.cs
+**/*.grpc.cs
+
+# If you generate proto to obj/ or another build dir
+**/obj/**/*.cs
+
+##################
+# Rider specific #
+##################
+
+.idea/
+.idea/.idea.*
+.idea_modules/
+*.iml
+*.ipr
+*.iws
+
+# Rider caches
+.idea/.cache/
+.idea/.workspace/
+.idea/usage.statistics.xml
+.idea/indexLayout.xml
+.idea/workspace.xml
+
+# Run/Debug configs
+.idea/runConfigurations/
+
+# File-based logs
+log/
+logs/
+
+# JetBrains Rider backup
+*_Backup/
+
+##################
+# Miscellaneous  #
+##################
+
+# OS generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ReSharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# Local test results
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+*.testsettings
+*.vsmdi
+
+# Others
+*.swp
+*.tmp
+*.bak
+*.orig
+*.rej
