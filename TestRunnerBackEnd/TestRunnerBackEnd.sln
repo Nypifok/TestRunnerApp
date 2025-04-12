@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UIHost", "UIHost\UIHost.csproj", "{BE710152-B420-4A46-9A79-187D1B17409A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestHostCore", "TestHostCore\TestHostCore.csproj", "{734B4C8F-F7FB-40FC-8E02-C83B84B1938C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BE710152-B420-4A46-9A79-187D1B17409A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE710152-B420-4A46-9A79-187D1B17409A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE710152-B420-4A46-9A79-187D1B17409A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE710152-B420-4A46-9A79-187D1B17409A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{734B4C8F-F7FB-40FC-8E02-C83B84B1938C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{734B4C8F-F7FB-40FC-8E02-C83B84B1938C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{734B4C8F-F7FB-40FC-8E02-C83B84B1938C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{734B4C8F-F7FB-40FC-8E02-C83B84B1938C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
