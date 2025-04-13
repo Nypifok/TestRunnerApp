@@ -6,6 +6,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <InvariantGlobalization>true</InvariantGlobalization>
         <PublishAot>true</PublishAot>
+        <RootNamespace>UIHost</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -18,10 +19,16 @@
 
     <ItemGroup>
         <Protobuf Include="..\TestRunner.Contract.Grpc.V1\Protos\*.proto" GrpcServices="Server" />
+        <Protobuf Update="..\TestRunner.Contract.Grpc.V1\Protos\test_manager.proto">
+          <Link>Protos\test_manager.proto</Link>
+        </Protobuf>
     </ItemGroup>
     
     <ItemGroup>
       <ProjectReference Include="..\TestRunner.Contract.Grpc.V1\TestRunner.Contract.Grpc.V1.csproj" />
+      <ProjectReference Include="..\TestRunner.Entities\TestRunner.Entities.csproj" />
+      <ProjectReference Include="..\TestRunner.Utility.Contract\TestRunner.Utility.Contract.csproj" />
+      <ProjectReference Include="..\TestRunner.Utility.VSTestWrapper\TestRunner.Utility.VSTestWrapper.csproj" />
     </ItemGroup>
 
 </Project>

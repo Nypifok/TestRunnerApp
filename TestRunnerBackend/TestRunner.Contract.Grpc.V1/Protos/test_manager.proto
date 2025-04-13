@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option csharp_namespace = "TestRunner.Contract.Grpc.V1";
+
+package test_manager;
+
+service TestManager {
+  rpc RunAllTests(RunAllTestsRequest) returns (RunAllTestsResponse);
+}
+
+message RunAllTestsRequest {
+}
+message RunAllTestsResponse {
+}

@@ -1,8 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UIHost", "UIHost\UIHost.csproj", "{62D65FA0-9C90-4D20-A302-9F07F39ECFE5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestRunner.UIHost", "TestRunner.UIHost\TestRunner.UIHost.csproj", "{62D65FA0-9C90-4D20-A302-9F07F39ECFE5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestRunner.Contract.Grpc.V1", "TestRunner.Contract.Grpc.V1\TestRunner.Contract.Grpc.V1.csproj", "{B8FA51F8-62B6-43F9-935D-DF908D098F67}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestRunner.Entities", "TestRunner.Entities\TestRunner.Entities.csproj", "{7C859D25-5409-41C4-98B2-13789B066B12}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestRunner.Utility.Contract", "TestRunner.Utility.Contract\TestRunner.Utility.Contract.csproj", "{5425E8A1-3A80-40AF-B211-1447AE52FCA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestRunner.Utility.VSTestWrapper", "TestRunner.Utility.VSTestWrapper\TestRunner.Utility.VSTestWrapper.csproj", "{FBC1D3A3-173D-40C7-B0E4-7DDEC315C5EA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +24,17 @@ Global
 		{B8FA51F8-62B6-43F9-935D-DF908D098F67}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8FA51F8-62B6-43F9-935D-DF908D098F67}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8FA51F8-62B6-43F9-935D-DF908D098F67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C859D25-5409-41C4-98B2-13789B066B12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C859D25-5409-41C4-98B2-13789B066B12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C859D25-5409-41C4-98B2-13789B066B12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C859D25-5409-41C4-98B2-13789B066B12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5425E8A1-3A80-40AF-B211-1447AE52FCA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5425E8A1-3A80-40AF-B211-1447AE52FCA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5425E8A1-3A80-40AF-B211-1447AE52FCA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5425E8A1-3A80-40AF-B211-1447AE52FCA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBC1D3A3-173D-40C7-B0E4-7DDEC315C5EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBC1D3A3-173D-40C7-B0E4-7DDEC315C5EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBC1D3A3-173D-40C7-B0E4-7DDEC315C5EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBC1D3A3-173D-40C7-B0E4-7DDEC315C5EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
