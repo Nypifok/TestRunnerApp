@@ -5,30 +5,36 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <InvariantGlobalization>true</InvariantGlobalization>
-        <PublishAot>true</PublishAot>
         <RootNamespace>UIHost</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="Grpc.AspNetCore" Version="2.57.0"/>
         <PackageReference Include="Grpc.Tools" Version="2.71.0">
-          <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
     </ItemGroup>
 
     <ItemGroup>
-        <Protobuf Include="..\TestRunner.Contract.Grpc.V1\Protos\*.proto" GrpcServices="Server" />
+        <Protobuf Include="..\TestRunner.Contract.Grpc.V1\Protos\*.proto" GrpcServices="Server"/>
         <Protobuf Update="..\TestRunner.Contract.Grpc.V1\Protos\test_manager.proto">
-          <Link>Protos\test_manager.proto</Link>
+            <Link>Protos\test_manager.proto</Link>
         </Protobuf>
     </ItemGroup>
-    
+
     <ItemGroup>
-      <ProjectReference Include="..\TestRunner.Contract.Grpc.V1\TestRunner.Contract.Grpc.V1.csproj" />
-      <ProjectReference Include="..\TestRunner.Entities\TestRunner.Entities.csproj" />
-      <ProjectReference Include="..\TestRunner.Utility.Contract\TestRunner.Utility.Contract.csproj" />
-      <ProjectReference Include="..\TestRunner.Utility.VSTestWrapper\TestRunner.Utility.VSTestWrapper.csproj" />
+        <ProjectReference Include="..\TestRunner.Contract.Grpc.V1\TestRunner.Contract.Grpc.V1.csproj"/>
+        <ProjectReference Include="..\TestRunner.Entities\TestRunner.Entities.csproj"/>
+        <ProjectReference Include="..\TestRunner.Utility.Contract\TestRunner.Utility.Contract.csproj"/>
+        <ProjectReference Include="..\TestRunner.Utility.VSTestWrapper\TestRunner.Utility.VSTestWrapper.csproj"/>
+
+
     </ItemGroup>
+
+    <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+        <DebugType>None</DebugType>
+    </PropertyGroup>
+    
 
 </Project>

@@ -7,4 +7,9 @@
         <RootNamespace>TestRunnerUtility.Contract</RootNamespace>
     </PropertyGroup>
 
+    <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+        <DebugType>None</DebugType>
+    </PropertyGroup>
+
+
 </Project>

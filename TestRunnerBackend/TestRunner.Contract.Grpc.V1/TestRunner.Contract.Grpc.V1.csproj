@@ -6,7 +6,11 @@
         <Nullable>enable</Nullable>
         <RootNamespace>Contract.Grpc</RootNamespace>
     </PropertyGroup>
-
+    
+    <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+        <DebugType>None</DebugType>
+    </PropertyGroup>
+    
     <ItemGroup>
         <Protobuf Include="**\*.proto" GrpcServices="None">
             <Generator>MSBuild:Compile</Generator>

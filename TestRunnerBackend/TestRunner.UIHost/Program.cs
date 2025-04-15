@@ -8,7 +8,8 @@ internal class Program
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
-
+        
+        builder.Configuration.AddJsonFile("appsettings.json", true, true);
         builder.Services.AddGrpc();
         
         //Weak dependency on TestRunner.Utility.VSTestWrapper which implements TestRunnerUtility.Contract
