@@ -12,9 +12,19 @@
     </PropertyGroup>
     
     <ItemGroup>
-        <Protobuf Include="**\*.proto" GrpcServices="None">
+        <Protobuf Include="..\..\..\Shared\Protos\**\*.proto" GrpcServices="Server">
             <Generator>MSBuild:Compile</Generator>
         </Protobuf>
     </ItemGroup>
+    
+    <ItemGroup>
+      <PackageReference Include="Google.Protobuf" Version="3.30.2" />
+      <PackageReference Include="Grpc.AspNetCore" Version="2.70.0" />
+      <PackageReference Include="Grpc.Tools" Version="2.71.0">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+    </ItemGroup>
+    
 
 </Project>
