@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestPlatform.ObjectModel.Logging;
 
 namespace TestRunner.Utility.VSTestWrapper.Managers.EventHandlers;
 
-internal class RunEventHandler : ITestRunEventsHandler
+public class RunEventHandler : ITestRunEventsHandler
 {
     private readonly AutoResetEvent _waitHandle;
     private readonly Func<TestRunCompleteEventArgs, TestRunChangedEventArgs, Task> _finishedCallback;

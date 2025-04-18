@@ -16,9 +16,10 @@ public static class VSWrapperExtensions
     public static IServiceCollection AddVSTestWrapper(this IServiceCollection serviceCollection)
     {
         serviceCollection.AddSingleton<IVSTestManager, VSTestManager>();
-
-        var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
         
+        var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+        serviceCollection.AddLogging();
+
         //TODO: Re-think log levels if aspcore not in use
         var traceLevel = (env is not null && env == "Development") ? TraceLevel.Verbose : TraceLevel.Off;
         

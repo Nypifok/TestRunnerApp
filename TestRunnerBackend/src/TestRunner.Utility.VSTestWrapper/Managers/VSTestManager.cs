@@ -8,7 +8,7 @@ using InnerTestCase = Microsoft.VisualStudio.TestPlatform.ObjectModel.TestCase;
 
 namespace TestRunner.Utility.VSTestWrapper.Managers;
 
-internal class VSTestManager : IVSTestManager
+public class VSTestManager : IVSTestManager
 {
     private readonly VsTestConsoleService _consoleService;
     private readonly IMapper _mapper;
@@ -77,6 +77,8 @@ internal class VSTestManager : IVSTestManager
     private async Task<BuildAccessStatus> ValidateTargetBuilds(IEnumerable<string> targetBuilds)
     {
         var targetBuildsEnumerated = targetBuilds as string[] ?? targetBuilds.ToArray();
+        if(!targetBuildsEnumerated.Any())
+            return BuildAccessStatus.UnknownError;
         try
         {
             foreach (var targetBuild in targetBuildsEnumerated)

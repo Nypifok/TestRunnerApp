@@ -5,7 +5,7 @@ using TestCase = Microsoft.VisualStudio.TestPlatform.ObjectModel.TestCase;
 
 namespace TestRunner.Utility.VSTestWrapper.Managers.EventHandlers;
 
-internal class DiscoveryEventHandler : ITestDiscoveryEventsHandler
+public class DiscoveryEventHandler : ITestDiscoveryEventsHandler
 {
     private readonly AutoResetEvent _waitHandle;
     private readonly Func<IEnumerable<TestCase>, Task> _updateCallback;

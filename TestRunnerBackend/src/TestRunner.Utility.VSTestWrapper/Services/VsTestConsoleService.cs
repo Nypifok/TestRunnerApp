@@ -6,7 +6,7 @@ using TestCase = Microsoft.VisualStudio.TestPlatform.ObjectModel.TestCase;
 
 namespace TestRunner.Utility.VSTestWrapper.Services;
 
-internal class VsTestConsoleService : IDisposable
+public class VsTestConsoleService : IDisposable
 {
     private readonly IVsTestConsoleWrapper _defaultWrapper;
 
