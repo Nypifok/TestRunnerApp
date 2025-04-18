@@ -1,0 +1,29 @@
+syntax = "proto3";
+import "test_discovery.proto";
+import "test_run.proto";
+
+option csharp_namespace = "TestRunner.Contract.Grpc.V1";
+
+package processing_notification_service;
+
+service ProcessingNotificationService {
+  rpc Subscribe(SubscribeRequest) returns (stream Notification);
+}
+
+message SubscribeRequest {
+  string userId = 1;
+}
+
+
+
+message Notification {
+  string requestId = 1;
+  oneof content {
+    //Tests discovery section 
+    TestsDiscoveryFinishedNotification testsDiscoveryFinished = 2;
+    TestsDiscoveryUpdatedNotification testsDiscoveryUpdated = 3;
+    TestsDiscoveryFailedNotification testsDiscoveryFailed = 4;
+    TestsRunFinishedNotification testsRunFinishedNotification = 5;
+    TestsRunUpdatedNotification testsRunUpdatedNotification = 6;
+  }
+}
