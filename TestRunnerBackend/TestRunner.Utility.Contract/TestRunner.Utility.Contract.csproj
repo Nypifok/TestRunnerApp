@@ -11,5 +11,9 @@
         <DebugType>None</DebugType>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\TestRunner.Entities\TestRunner.Entities.csproj" />
+    </ItemGroup>
+
 
 </Project>

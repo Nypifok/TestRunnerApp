@@ -14,13 +14,19 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+        <PackageReference Include="Serilog" Version="4.2.0" />
+        <PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
+        <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
+        <PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
     </ItemGroup>
 
     <ItemGroup>
         <Protobuf Include="..\TestRunner.Contract.Grpc.V1\Protos\*.proto" GrpcServices="Server"/>
-        <Protobuf Update="..\TestRunner.Contract.Grpc.V1\Protos\test_manager.proto">
-            <Link>Protos\test_manager.proto</Link>
-        </Protobuf>
+        <Protobuf Update="..\TestRunner.Contract.Grpc.V1\Protos\test_discovery.proto"/>
+        <Protobuf Update="..\TestRunner.Contract.Grpc.V1\Protos\test_run.proto"/>
+        <Protobuf Update="..\TestRunner.Contract.Grpc.V1\Protos\test_session_service.proto"/>
+        <Protobuf Update="..\TestRunner.Contract.Grpc.V1\Protos\processing_notification_service.proto"/>
+        
     </ItemGroup>
 
     <ItemGroup>
