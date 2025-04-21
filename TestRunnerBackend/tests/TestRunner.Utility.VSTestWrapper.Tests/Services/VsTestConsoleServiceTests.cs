@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Logging;
 using Microsoft.TestPlatform.VsTestConsole.TranslationLayer.Interfaces;
 using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 using Microsoft.VisualStudio.TestPlatform.ObjectModel.Client;
@@ -18,13 +19,13 @@ public class VsTestConsoleServiceTests
     public void Setup()
     {
         _mockWrapper = new Mock<IVsTestConsoleWrapper>(MockBehavior.Loose);
-        _service = new VsTestConsoleService(_mockWrapper.Object);
+        _service = new VsTestConsoleService(_mockWrapper.Object, new Mock<ILogger<VsTestConsoleService>>().Object);
     }
 
     [Test]
     public void Constructor_NullWrapper_Throws()
     {
-        Assert.Throws<ArgumentNullException>(() => new VsTestConsoleService(null));
+        Assert.Throws<ArgumentNullException>(() => new VsTestConsoleService(null, new Mock<ILogger<VsTestConsoleService>>().Object));
     }
 
     [Test]

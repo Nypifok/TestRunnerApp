@@ -52,7 +52,7 @@ internal class NotificationsDispatcher
                     await stream.WriteAsync(new Notification
                     {
                         RequestId = requestId,
-                        TestsDiscoveryFinished =
+                        TestsDiscoveryFinishedNotification = 
                             _mapper.Map<TestsDiscoveryFinishedNotification>(finished)
                     });
                     break;
@@ -60,7 +60,7 @@ internal class NotificationsDispatcher
                     await stream.WriteAsync(new Notification
                     {
                         RequestId = requestId,
-                        TestsDiscoveryUpdated =
+                        TestsDiscoveryUpdatedNotification = 
                             _mapper.Map<TestsDiscoveryUpdatedNotification>(finished)
                     });
                     break;

@@ -22,13 +22,12 @@ public static class VSWrapperExtensions
 
         //TODO: Re-think log levels if aspcore not in use
         var traceLevel = (env is not null && env == "Development") ? TraceLevel.Verbose : TraceLevel.Off;
-        
-        //TODO: Specify log path
-        //Loading at application start
+
         var wrapper = new VsTestConsoleWrapper(_vsConsolePath, new ConsoleParameters()
         {
             TraceLevel = traceLevel,
             InheritEnvironmentVariables = true,
+            LogFilePath = Path.Combine(AppContext.BaseDirectory, "Logs", "vsTestConsoleLog.txt")
         });
         wrapper.StartSession();
         serviceCollection.AddTransient<IVsTestConsoleWrapper, VsTestConsoleWrapper>((x)=>wrapper);

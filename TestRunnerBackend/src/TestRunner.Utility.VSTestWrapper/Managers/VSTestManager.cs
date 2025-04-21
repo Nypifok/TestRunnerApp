@@ -77,7 +77,7 @@ public class VSTestManager : IVSTestManager
     private async Task<BuildAccessStatus> ValidateTargetBuilds(IEnumerable<string> targetBuilds)
     {
         var targetBuildsEnumerated = targetBuilds as string[] ?? targetBuilds.ToArray();
-        if(!targetBuildsEnumerated.Any())
+        if (!targetBuildsEnumerated.Any())
             return BuildAccessStatus.UnknownError;
         try
         {
@@ -116,6 +116,16 @@ public class VSTestManager : IVSTestManager
         try
         {
             ArgumentNullException.ThrowIfNull(innerCallback);
+
+            if (updateArgs?.NewTestResults is not null)
+            {
+                var processedTests =
+                    updateArgs.NewTestResults.Select(t => t.DisplayName + " => " + t.Duration.TotalMilliseconds);
+                _logger.LogTrace(
+                    $"{nameof(RunTestsUpdateCallback)}: some tests processing finished: \n\r {string.Join(",\n\r", processedTests)}");
+            }
+
+
             var notification = new TestsRunUpdatedNotification
             {
                 ActiveTestCases = updateArgs?.ActiveTests is not null

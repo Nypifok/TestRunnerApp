@@ -20,9 +20,9 @@ message Notification {
   string requestId = 1;
   oneof content {
     //Tests discovery section 
-    TestsDiscoveryFinishedNotification testsDiscoveryFinished = 2;
-    TestsDiscoveryUpdatedNotification testsDiscoveryUpdated = 3;
-    TestsDiscoveryFailedNotification testsDiscoveryFailed = 4;
+    TestsDiscoveryFinishedNotification testsDiscoveryFinishedNotification = 2;
+    TestsDiscoveryUpdatedNotification testsDiscoveryUpdatedNotification = 3;
+    TestsDiscoveryFailedNotification testsDiscoveryFailedNotification = 4;
     TestsRunFinishedNotification testsRunFinishedNotification = 5;
     TestsRunUpdatedNotification testsRunUpdatedNotification = 6;
   }
