@@ -1,30 +1,55 @@
-# TestRunnerApp
-Test task for JetBrains team
-![image](https://github.com/user-attachments/assets/dded08cb-de9a-41dd-b18f-5001b09e727b)
+# 🧪 TestRunnerApp
 
+> ✅ **Test task for JetBrains team**
 
-##How to install:
-Launch ./TestRunnerInstaller.exe
+![screenshot](https://github.com/user-attachments/assets/dded08cb-de9a-41dd-b18f-5001b09e727b)
 
-After installation completed, just open TestRunner.exe from WindowsStartMenu or directly from "C:\Program Files (x86)\TestRunner\TestRunner.exe"
+---
 
-##How to build:
+## 🚀 Installation
 
-###Frontend:
-Build:
-PS: yourPath\TestRunnerApp\TestRunnerUI > ./gradlew build --refresh-dependencies 
-Run: 
-Before running don't forget to publish Backend to default folder, or choose any folder and change .\TestRunnerApp\TestRunnerUI\src\main\resources\config.dev.json
+### 🔧 Via Installer:
 
-PS: $env:APP_ENV="dev"; ./gradlew run --stacktrace
+1. Run `./TestRunnerInstaller.exe`
+2. After installation:
+   - Launch the app from **Start Menu** → `TestRunner`
+   - Or directly from:  
+     `C:\Program Files (x86)\TestRunner\TestRunner.exe`
 
-###Backend
+---
 
-Build:
-./TestRunnerApp/TestRunnerBackend/src > dotnet build TestRunnerBackend.sln
+## 🛠️ Build Instructions
 
-Publish:
-./TestRunnerApp/TestRunnerBackend/src >
+### 📦 Frontend (Kotlin + Swing)
+
+#### 📌 Build:
+```powershell
+cd yourPath\TestRunnerApp\TestRunnerUI
+./gradlew build --refresh-dependencies
+```
+
+#### ▶️ Run:
+Before running, make sure the **backend is published** to the default folder.  
+If using a custom location, update the path in `TestRunnerUI/src/main/resources/config.dev.json`.
+
+```powershell
+$env:APP_ENV="dev"
+./gradlew run --stacktrace
+```
+
+---
+
+### ⚙️ Backend (.NET 8, gRPC, Koin)
+
+#### 📌 Build:
+```powershell
+cd TestRunnerApp/TestRunnerBackend/src
+dotnet build TestRunnerBackend.sln
+```
+
+#### 🚀 Publish (Self-Contained Executable):
+```powershell
+cd TestRunnerApp/TestRunnerBackend/src
 
 dotnet publish TestRunner.UIHost.csproj `
   -c Release `
@@ -35,4 +60,6 @@ dotnet publish TestRunner.UIHost.csproj `
   /p:IncludeNativeLibrariesForSelfExtract=true `
   /p:DeleteExistingFiles=true `
   -o ./publish
+```
 
+---
