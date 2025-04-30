@@ -103,10 +103,10 @@ class TestsExplorerView : JPanel() {
             val selectedNode = event.path.lastPathComponent as? DefaultMutableTreeNode
             val userObject = selectedNode?.userObject
             if (userObject is TestTreeNode) {
-                testSummary.changeTarget(userObject)
+                testSummary.changeTarget(userObject,viewModel.tests.value)
             }
             if (userObject is TestGroupTreeNode) {
-                testSummary.changeTarget(userObject)
+                testSummary.changeTarget(userObject,viewModel.tests.value)
             }
         }
     }

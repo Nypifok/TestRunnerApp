@@ -56,6 +56,8 @@ class TestExplorerViewModel(private val model: TestSessionModel, private val vie
             withContext(Dispatchers.IO) {
                 model.cancelCurrentOperation()
             }
+            //Waits for last notifications
+            delay(100)
             currentOperation?.cancel()
         }
         job.join()

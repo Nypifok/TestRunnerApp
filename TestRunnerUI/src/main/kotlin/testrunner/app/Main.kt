@@ -12,34 +12,46 @@ import java.io.File
 import java.net.ServerSocket
 
 object DI : KoinComponent
+
 fun main() {
-    val freePort=findFreePort()
-    val args = listOf("--port", "$freePort")
+    val currentPid = ProcessHandle.current().pid()
+    val freePort = findFreePort()
+    val args = listOf("--port", "$freePort", "--parent", currentPid.toString())
     val hostPath = ConfigurationManager.config.uiHostPath;
     val hostProcess = ProcessBuilder(listOf(hostPath) + args)
-        .directory(File(".\\"))
+        .directory(File(hostPath).parentFile)
         .redirectErrorStream(true)
         .start()
 
+    val reader = hostProcess.inputStream.bufferedReader()
+    while (true) {
+        val line = reader.readLine() ?: break
+        if (line.contains("UIHOST_READY")) {
+            break
+        }
+    }
+
     Runtime.getRuntime().addShutdownHook(Thread {
         hostProcess?.destroy()
+        hostProcess?.destroyForcibly()
         hostProcess?.waitFor()
     })
     startKoin {
         modules(appModule)
-        modules(modelModule(5128))
+        modules(modelModule(freePort))
         modules(viewModelModule)
     }
-    println(freePort)
 
     createUI()
 }
-fun createUI(){
+
+fun createUI() {
     FlatDarculaLaf.setup()
     javax.swing.SwingUtilities.invokeLater {
         MainView()
     }
 }
+
 fun findFreePort(): Int {
     ServerSocket(0).use { socket ->
         return socket.localPort

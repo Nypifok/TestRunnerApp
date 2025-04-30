@@ -10,6 +10,7 @@ import processing_notification_service.TestDiscovery.TestCase
 import processing_notification_service.TestRun
 import processing_notification_service.TestRun.TestResult
 import processing_notification_service.TestSessionServiceGrpcKt
+import processing_notification_service.TestSessionServiceOuterClass.CancelCurrentOperationRequest
 import processing_notification_service.TestSessionServiceOuterClass.DiscoverTestsRequest
 import processing_notification_service.TestSessionServiceOuterClass.RunSelectedTestsRequest
 import testrunner.app.domain.entities.Outcome
@@ -40,60 +41,75 @@ class StorageClient(private val channel: ManagedChannel) : IStorageClient {
     }
 
     override suspend fun getTestCases(paths: List<String>): Flow<List<Test>> = channelFlow {
-        val collectedTests = mutableListOf<Test>()
+        try {
+            val collectedTests = mutableListOf<Test>()
 
-        val request = DiscoverTestsRequest.newBuilder().setUserId(defaultClientId).addAllPaths(paths).build()
-        val invocationResult = testSessionStub.discoverTests(request)
-        if (invocationResult.success) {
+            val request = DiscoverTestsRequest.newBuilder().setUserId(defaultClientId).addAllPaths(paths).build()
+            val invocationResult = testSessionStub.discoverTests(request)
+            if (invocationResult.success) {
 
-            while (true) {
-                val notification = awaitNotification(invocationResult.requestId)
-                _notifications.value -= notification
-                if (notification.contentCase == Notification.ContentCase.TESTSDISCOVERYFINISHEDNOTIFICATION) {
-                    collectedTests.updateOrAddTestCases(notification.testsDiscoveryFinishedNotification.testCasesList)
+                while (true) {
+                    val notification = awaitNotification(invocationResult.requestId)
+                    _notifications.value -= notification
+                    if (notification.contentCase == Notification.ContentCase.TESTSDISCOVERYFINISHEDNOTIFICATION) {
+                        collectedTests.updateOrAddTestCases(notification.testsDiscoveryFinishedNotification.testCasesList)
+                        trySend(collectedTests.toList())
+                        break;
+                    }
+
+                    collectedTests.updateOrAddTestCases(notification.testsDiscoveryUpdatedNotification.testCasesList)
+
+
                     trySend(collectedTests.toList())
-                    break;
                 }
-
-                collectedTests.updateOrAddTestCases(notification.testsDiscoveryUpdatedNotification.testCasesList)
-
-
-                trySend(collectedTests.toList())
             }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
+
     }
 
     override suspend fun runSelectedTests(testCases: List<Test>): Flow<List<Test>> = channelFlow {
-        val collectedTests = mutableListOf<Test>()
-        collectedTests.addAll(testCases)
+        try {
+            val collectedTests = mutableListOf<Test>()
+            collectedTests.addAll(testCases)
 
-        val request = RunSelectedTestsRequest.newBuilder()
-            .setUserId(defaultClientId)
-            .addAllTestCases(testCases.toProto())
-            .build()
+            val request = RunSelectedTestsRequest.newBuilder()
+                .setUserId(defaultClientId)
+                .addAllTestCases(testCases.toProto())
+                .build()
 
-        val invocationResult = testSessionStub.runSelectedTests(request)
-        if (invocationResult.success) {
+            val invocationResult = testSessionStub.runSelectedTests(request)
+            if (invocationResult.success) {
 
-            while (true) {
-                val notification = awaitNotification(invocationResult.requestId)
-                _notifications.value -= notification
-                if (notification.contentCase == Notification.ContentCase.TESTSRUNFINISHEDNOTIFICATION) {
-                    collectedTests.updateOrAddTestResults(notification.testsRunFinishedNotification.testResultsList)
+                while (true) {
+                    val notification = awaitNotification(invocationResult.requestId)
+                    _notifications.value -= notification
+                    if (notification.contentCase == Notification.ContentCase.TESTSRUNFINISHEDNOTIFICATION) {
+                        collectedTests.updateOrAddTestResults(notification.testsRunFinishedNotification.testResultsList)
+                        trySend(collectedTests.toList())
+                        break;
+                    }
+
+                    collectedTests.updateOrAddTestResults(notification.testsRunUpdatedNotification.testResultsList)
+
+
                     trySend(collectedTests.toList())
-                    break;
                 }
-
-                collectedTests.updateOrAddTestResults(notification.testsRunUpdatedNotification.testResultsList)
-
-
-                trySend(collectedTests.toList())
             }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 
     override suspend fun cancelCurrentOperation() {
-        TODO("Not yet implemented")
+        try {
+            val request = CancelCurrentOperationRequest.newBuilder().build()
+            testSessionStub.cancelCurrentOperation(request)
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     private suspend fun awaitNotification(
