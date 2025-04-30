@@ -39,7 +39,7 @@ $env:APP_ENV="dev"
 
 ---
 
-### ⚙️ Backend (.NET 8, gRPC, Koin)
+### ⚙️ Backend (.NET 8, gRPC)
 
 #### 📌 Build:
 ```powershell
