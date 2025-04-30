@@ -10,7 +10,7 @@
 
 ### 🔧 Via Installer:
 
-1. Run `./TestRunnerInstaller.exe`
+1. Run `./TestRunnerInstaller.exe` from https://drive.google.com/file/d/1kU8QgD2tunB3wP5CqDneK79KUj00U93c/view?usp=sharing  (probably need better storage option xd)
 2. After installation:
    - Launch the app from **Start Menu** → `TestRunner`
    - Or directly from:  
