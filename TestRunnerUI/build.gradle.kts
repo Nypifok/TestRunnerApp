@@ -21,9 +21,11 @@ java {
 
 plugins {
     kotlin("jvm") version "2.1.20"
+    kotlin("plugin.serialization") version "2.1.20"
     id("com.google.protobuf") version "0.9.5"
     application
 }
+
 repositories {
     mavenCentral()
     google()
@@ -44,6 +46,10 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:1.8.1")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
     implementation("io.insert-koin:koin-core:4.0.4")
+    //UI section
+
+    implementation("com.formdev:flatlaf:3.6")
+    implementation("com.formdev:flatlaf-extras:3.6")
 }
 
 protobuf {
@@ -88,22 +94,6 @@ sourceSets {
                 "build/generated/source/proto/main/grpckt"
             )
         }
-    }
-}
-
-tasks.named("run") {
-    dependsOn("loadConfig")
-}
-
-task("loadConfig") {
-    doLast {
-        val env = System.getenv("APP_ENV") ?: "dev"
-        val configFilePath = if (env == "prod") {
-            "./config.prod.json"
-        } else {
-            "./config.dev.json"
-        }
-
     }
 }
 
