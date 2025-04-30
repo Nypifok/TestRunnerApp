@@ -16,6 +16,7 @@
    - Or directly from:  
      `C:\Program Files (x86)\TestRunner\TestRunner.exe`
 
+PS: this option might now work on your machine, decided to not spend extra time on this
 ---
 
 ## 🛠️ Build Instructions
