@@ -1,3 +1,4 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import com.google.protobuf.gradle.id
 
 val grpcVersion = "1.72.0"
@@ -23,6 +24,7 @@ plugins {
     kotlin("jvm") version "2.1.20"
     kotlin("plugin.serialization") version "2.1.20"
     id("com.google.protobuf") version "0.9.5"
+    id("com.gradleup.shadow") version "8.3.6"
     application
 }
 
@@ -36,6 +38,7 @@ repositories {
 
 dependencies {
     implementation("io.grpc:grpc-netty-shaded:${grpcVersion}")
+    implementation("io.grpc:grpc-core")
     implementation("io.grpc:grpc-protobuf-lite:${grpcVersion}")
     implementation("io.grpc:grpc-protobuf:${grpcVersion}")
     implementation("io.grpc:grpc-stub:${grpcVersion}")
@@ -47,7 +50,6 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
     implementation("io.insert-koin:koin-core:4.0.4")
     //UI section
-
     implementation("com.formdev:flatlaf:3.6")
     implementation("com.formdev:flatlaf-extras:3.6")
 }
@@ -96,6 +98,31 @@ sourceSets {
         }
     }
 }
+
+
+tasks.register<ShadowJar>("fatJar") {
+    archiveClassifier.set("all")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    manifest {
+        attributes(
+            "Main-Class" to "testrunner.app.MainKt",
+            "Implementation-Version" to project.version
+        )
+    }
+
+    from(sourceSets.main.get().output)
+
+    from({
+        sourceSets.main.get().runtimeClasspath.map {
+            if (it.isDirectory) it else zipTree(it)
+        }
+    })
+    mergeServiceFiles {
+        include("META-INF/services/io.grpc.*")
+    }
+
+}
+
 
 tasks.test {
     useJUnitPlatform()

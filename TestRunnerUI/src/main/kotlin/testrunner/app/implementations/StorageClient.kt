@@ -1,8 +1,13 @@
 package testrunner.app.implementations
 
+import io.grpc.LoadBalancerRegistry
 import io.grpc.ManagedChannel
-import kotlinx.coroutines.*
+import io.grpc.internal.PickFirstLoadBalancerProvider
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 import processing_notification_service.ProcessingNotificationServiceGrpcKt
 import processing_notification_service.ProcessingNotificationServiceOuterClass.Notification
 import processing_notification_service.ProcessingNotificationServiceOuterClass.SubscribeRequest
@@ -10,13 +15,12 @@ import processing_notification_service.TestDiscovery.TestCase
 import processing_notification_service.TestRun
 import processing_notification_service.TestRun.TestResult
 import processing_notification_service.TestSessionServiceGrpcKt
-import processing_notification_service.TestSessionServiceOuterClass.CancelCurrentOperationRequest
-import processing_notification_service.TestSessionServiceOuterClass.DiscoverTestsRequest
-import processing_notification_service.TestSessionServiceOuterClass.RunSelectedTestsRequest
+import processing_notification_service.TestSessionServiceOuterClass.*
 import testrunner.app.domain.entities.Outcome
 import testrunner.app.domain.entities.Test
 import testrunner.app.model.contract.IStorageClient
 import java.util.*
+
 
 class StorageClient(private val channel: ManagedChannel) : IStorageClient {
     private val testSessionStub = TestSessionServiceGrpcKt.TestSessionServiceCoroutineStub(channel)

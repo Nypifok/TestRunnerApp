@@ -10,6 +10,7 @@ service TestSessionService {
   rpc DiscoverTests(DiscoverTestsRequest) returns (DiscoverTestsResponse);
   rpc RunAllTests(RunAllTestsRequest) returns (RunAllTestsResponse);
   rpc RunSelectedTests(RunSelectedTestsRequest) returns (RunSelectedTestsResponse);
+  rpc CancelCurrentOperation(CancelCurrentOperationRequest) returns (CancelCurrentOperationResponse);
 }
 message RunAllTestsRequest {
   string userId = 1;
@@ -34,6 +35,11 @@ message DiscoverTestsRequest {
 message DiscoverTestsResponse{
   bool success = 1;
   string requestId = 2;
+}
+message CancelCurrentOperationRequest {
+}
+message CancelCurrentOperationResponse{
+  bool success = 1;
 }
 
 

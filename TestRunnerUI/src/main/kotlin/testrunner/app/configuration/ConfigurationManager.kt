@@ -12,7 +12,7 @@ object ConfigurationManager {
 
     private fun loadConfig(): AppConfiguration {
 
-        val env = System.getenv("APP_ENV") ?: "dev"
+        val env = System.getenv("APP_ENV") ?: "prod"
 
         appConfigName = if (env == "prod") {
             "config.prod.json"

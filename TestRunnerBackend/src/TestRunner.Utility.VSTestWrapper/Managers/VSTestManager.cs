@@ -74,6 +74,11 @@ public class VSTestManager : IVSTestManager
             errorHandler);
     }
 
+    public async Task CancelCurrentOperation()
+    {
+        await _consoleService.CancelCurrentOperation();
+    }
+
     private async Task<BuildAccessStatus> ValidateTargetBuilds(IEnumerable<string> targetBuilds)
     {
         var targetBuildsEnumerated = targetBuilds as string[] ?? targetBuilds.ToArray();

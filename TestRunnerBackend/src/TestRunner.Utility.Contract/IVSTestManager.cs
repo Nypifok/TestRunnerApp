@@ -39,4 +39,10 @@ public interface IVSTestManager
     /// <param name="callback">Notification callback which will be executed with each processing update</param>
     /// <param name="errorHandler">Handles an error</param>
     public Task RunSelectedTests(IEnumerable<TestCase> testCases, Func<NotificationBase, Action<Exception>, Task> callback, Action<Exception> errorHandler);
+
+    /// <summary>
+    /// Cancels current operation of vstestmanager
+    /// </summary>
+    /// <returns></returns>
+    public Task CancelCurrentOperation();
 }

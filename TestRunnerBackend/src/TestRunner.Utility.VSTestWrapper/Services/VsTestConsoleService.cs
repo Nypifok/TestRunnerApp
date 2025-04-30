@@ -177,6 +177,11 @@ public class VsTestConsoleService : IDisposable
         return Task.CompletedTask;
     }
 
+    public Task CancelCurrentOperation()
+    {
+        CancelCurrentOperation(null);
+        return Task.CompletedTask;
+    }
     private void CancelCurrentOperation(string newOperationName = null)
     {
         lock (_currentOperationNameLock)

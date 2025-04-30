@@ -157,6 +157,35 @@ internal class TestSessionService : TestRunner.Contract.Grpc.V1.TestSessionServi
         }
     }
 
+    public override async Task<CancelCurrentOperationResponse> CancelCurrentOperation(CancelCurrentOperationRequest request, ServerCallContext context)
+    {
+        try
+        {
+            if (request is null)
+                throw new RpcException(new Status(StatusCode.InvalidArgument, "Request message cannot be empty."));
+
+            await _vsTestManager.CancelCurrentOperation();
+
+            return new CancelCurrentOperationResponse
+            {
+                Success = true
+            };
+        }
+        catch (RpcException ex)
+        {
+            _logger.LogError(ex, ex.Message);
+            throw;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, ex.Message);
+            return new CancelCurrentOperationResponse
+            {
+                Success = false
+            };
+        }
+    }
+
     private void DefaultTestSessionExceptionHandler(Exception exception)
     {
         _logger.LogError(exception, exception.Message);
